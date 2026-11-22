@@ -1,0 +1,11 @@
+title: Web Medium
+description: >-
+  Web-medium profile extending core with web-specific principles:
+  responsive layout, web motion, web accessibility, rendering
+  performance, and CSS/SVG/Canvas platform primitives. The brand_*
+  profiles extend this.
+extends:
+  - github.com/ctxmod/design/context/profiles/core
+packages:
+  add:
+    - platform

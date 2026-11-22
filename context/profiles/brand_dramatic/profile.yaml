@@ -1,0 +1,10 @@
+title: Dramatic Brand
+description: >-
+  Dramatic brand — high-contrast dark-surface theatrical aesthetic,
+  Outfit 400/900 binary weights, violet+rose accents on near-black.
+  Extends web with concrete component styling.
+extends:
+  - github.com/ctxmod/design/context/profiles/web
+packages:
+  add:
+    - styling

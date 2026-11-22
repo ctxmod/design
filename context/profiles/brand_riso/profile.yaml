@@ -1,0 +1,11 @@
+title: Riso Brand
+description: >-
+  Riso brand — two-color risograph aesthetic, warm paper surface,
+  fluorescent-pink interaction, federal-blue text with signature
+  offset print-shadow, Space Grotesk. Extends web with concrete
+  component styling.
+extends:
+  - github.com/ctxmod/design/context/profiles/web
+packages:
+  add:
+    - styling

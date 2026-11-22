@@ -1,0 +1,10 @@
+title: Brutalism Brand
+description: >-
+  Brutalism brand — raw structural honesty, thick borders, Darker
+  Grotesque extreme weights, terracotta+ochre palette, no shadows or
+  rounded corners. Extends web with concrete component styling.
+extends:
+  - github.com/ctxmod/design/context/profiles/web
+packages:
+  add:
+    - styling

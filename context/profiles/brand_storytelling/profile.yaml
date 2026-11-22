@@ -1,0 +1,10 @@
+title: Storytelling Brand
+description: >-
+  Storytelling brand — narrative-driven aesthetic, Inter body +
+  Abril Fatface display, three-act page structure, pacing through
+  generous spacing. Extends web with concrete component styling.
+extends:
+  - github.com/ctxmod/design/context/profiles/web
+packages:
+  add:
+    - styling

@@ -1,0 +1,11 @@
+title: Expressive Brand
+description: >-
+  Expressive brand — vibrant personality-driven aesthetic, IBM Plex
+  Mono typographic voice, pink+blue dual-accent, full weight
+  spectrum, playful layouts. Extends web with concrete component
+  styling.
+extends:
+  - github.com/ctxmod/design/context/profiles/web
+packages:
+  add:
+    - styling
