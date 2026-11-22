@@ -1,0 +1,13 @@
+title: Interface Design
+description: >-
+  Medium-agnostic visual design principles grounded in ISO 9241-110,
+  an abstract component taxonomy, the design process (brief, review,
+  tokens, information architecture, medium charter), and their
+  concretizations: the web medium, paginated print documents (with
+  academic, invoice and report types), seven web brand profiles, and
+  Swedish public-sector web requirements (DOS-lagen, WCAG, DIGG).
+path: github.com/ctxmod/design/context
+requires:
+  - github.com/ctxmod/writing/context
+default_profiles:
+  - core
