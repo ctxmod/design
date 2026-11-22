@@ -1,0 +1,17 @@
+title: Swedish Public-Sector Web
+description: >-
+  The legal and standards backdrop Swedish public-sector organisations
+  measure web work against: DOS-lagen and its EN 301 549 / WCAG bar,
+  the tillgänglighetsredogörelse (accessibility statement), DIGG's
+  open-source publication checklist with publiccode.yml, open data per
+  DCAT-AP-SE, the Swedish public design systems (FKUI, Digi), and the
+  licensing landscape for Swedish Sign Language (STS) media. Facts are
+  dated and were verified against primary sources on 2026-10-30;
+  re-verify the load-bearing clauses before they shape a deliverable.
+  Extends web.
+extends:
+  - github.com/ctxmod/design/context/profiles/web
+packages:
+  add:
+    - sweden
+    - sign_language_media

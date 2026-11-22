@@ -1,0 +1,12 @@
+title: Paginated-Print Documents
+description: >-
+  Paginated-print medium profile extending core with typeset-document
+  principles: fixed page geometry, page breaks, running heads and
+  folios, footnotes, a print color gamut, and no interaction. Opt-in
+  document-type packages academic, invoice and report add genre
+  conventions.
+extends:
+  - github.com/ctxmod/design/context/profiles/core
+packages:
+  add:
+    - print

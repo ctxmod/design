@@ -1,0 +1,10 @@
+title: Forest Brand
+description: >-
+  Forest brand — sustainability-inspired dark-green surfaces with
+  lime brand accents, rounded cards, flat components. Extends web
+  with concrete component styling.
+extends:
+  - github.com/ctxmod/design/context/profiles/web
+packages:
+  add:
+    - styling

@@ -1,0 +1,6 @@
+description: >-
+  The abstract, platform-agnostic component taxonomy: buttons,
+  inputs, cards, navigation, feedback, data display, layout
+  containers, and states, with their variants, states and
+  responsibilities.
+binds_to_depth: main...

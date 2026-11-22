@@ -1,0 +1,11 @@
+title: Spacious Brand
+description: >-
+  Spacious brand — whitespace-first aesthetic, 8pt grid with
+  generous defaults, Open Sans + Montserrat, conventional blue-violet
+  accent, space as hierarchy. Extends web with concrete component
+  styling.
+extends:
+  - github.com/ctxmod/design/context/profiles/web
+packages:
+  add:
+    - styling

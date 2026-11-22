@@ -1,7 +1,13 @@
 title: Design Core
 description: >-
-  Medium-agnostic design doctrine: perception and cognition, visual
-  hierarchy, typography, color, spacing, composition, motion, density,
-  iconography, dark mode, internationalization, and accessibility as
-  quality; an abstract component taxonomy; and the design process from
-  brief to review. Every medium and brand profile builds on it.
+  Umbrella profile for user-facing surface design: framework-agnostic
+  design principles grounded in ISO 9241-110, visual language, an
+  abstract component taxonomy, and the design process, which medium
+  profiles (web, documents, and future ones such as ios or cli) and
+  brand profiles specialize.
+packages:
+  defaults:
+    - foundations
+    - principles
+    - components
+    - process
