@@ -83,6 +83,9 @@ The web now expresses relationships that once required JS or extra classes:
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::platform@web/reference/web_accessibility.md" /> focus rule.
 - **`:focus-within`**, **`:placeholder-shown`**, **`:user-invalid`** — state-driven
   styling that maps onto the umbrella's component states with no JavaScript.
+- **`@scope (.card) to (.card__slot)`** — limits a block of rules to a component
+  subtree (with an optional lower boundary), giving proximity-based styling
+  without BEM-style naming; Baseline newly available since 2026-03.
 
 ## Logical properties
 
@@ -115,6 +118,62 @@ umbrella's color principle):
   l c h / 0.5)`) to derive a variant from a token.
 - Generated colors still owe the <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::platform@web/reference/web_accessibility.md" /> thresholds —
   verify them; a perceptually-even ramp is not automatically an accessible one.
+
+## Baseline: deciding what a design may depend on
+
+"Supported" is not a yes/no. Use the cross-browser **Baseline** status from the
+web-features data set (shown on MDN, caniuse and webstatus.dev) to decide how a
+design may lean on a feature:
+
+- **Widely available** (in every core browser for 30 months) — depend on it
+  freely.
+- **Newly available** (just reached every core browser) — use it, but the
+  experience must still work for users on older engines: guard with
+  `@supports` or let it fail soft.
+- **Limited availability** — progressive enhancement only; the design must be
+  complete without it.
+
+Status as of 2026-11 for the primitives this profile leans on:
+
+| Feature | Baseline (2026-11) | Design consequence |
+|---|---|---|
+| Cascade layers, container size queries, `color-mix()`, OKLab/OKLCH | Widely available | Default tools; no fallback needed |
+| `:has()` | Widely available (2026-06) | Reactive parent/state styling without classes |
+| `light-dark()`, `text-wrap: balance` | Widely available (2026-11) | Theme tokens in one declaration; balanced headings |
+| Relative color syntax, `@starting-style`, `transition-behavior` | Newly available (2024) | Derived tints; entry/exit transitions for `display` and top-layer elements |
+| Popover API | Newly available (2025-01) | Declarative top-layer menus, toggletips, non-modal overlays |
+| `@scope` | Newly available (2026-03) | Component-scoped styles without naming conventions |
+| `contrast-color()` | Newly available (2026-04) | Auto white/black text; still verify body-text contrast (see the color principle) |
+| Anchor positioning | Limited | Tether popovers/tooltips to their trigger as enhancement; keep a non-anchored fallback position |
+| Customizable `<select>` (`appearance: base-select`), `interpolate-size`, `if()` | Limited | Enhancement only |
+
+Re-check the status before a design hard-depends on a Newly or Limited feature —
+the data moves monthly.
+
+### Theme tokens with `light-dark()`
+
+With `color-scheme: light dark` on `:root`, a semantic token can carry both
+theme values in one place — `--color-surface: light-dark(oklch(0.98 0.01 90),
+oklch(0.22 0.01 90));` — so the theme mode re-resolves the role without a
+duplicate selector block (the token model's "modes re-resolve, components don't
+change").
+
+### Top-layer primitives: `<dialog>`, popover, anchors
+
+Native top-layer elements replace most hand-rolled overlay code and bring
+focus, Esc and stacking behaviour with them:
+
+- **`<dialog>` with `showModal()`** for modal dialogs (inert background, focus
+  moved into the dialog).
+- **The `popover` attribute** (`popovertarget` on the trigger) for menus,
+  pickers and toggletips — light dismiss and top-layer stacking without
+  `z-index` wars.
+- **Anchor positioning** (`anchor-name` / `position-anchor` / `position-area`,
+  with `position-try-fallbacks`) to keep a popover tethered to its trigger;
+  limited availability, so the popover must still be usable where it falls back.
+- Animate their entry and exit with `@starting-style` and
+  `transition-behavior: allow-discrete`, and keep the reduced-motion contract
+  from <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::platform@web/reference/web_motion.md" />.
 
 ## SVG for icons and illustration
 
@@ -177,6 +236,10 @@ Build on the primitive, and the brand survives a change of framework.
 - **No `!important`.** If a rule needs `!important` to win, the cascade is
   mis-layered — fix the `@layer` order or selector instead. The only tolerated use
   is the `prefers-reduced-motion` safety-net reset.
+- **Gate features on Baseline.** Widely-available features are the default; a
+  Newly-available feature needs a working experience without it (`@supports` or
+  fail-soft); a Limited-availability one is enhancement only. Check the current
+  status (see "Baseline" above) rather than assuming it.
 - **Unit discipline.** `rem` for type and spacing (honors user zoom), `%`/`fr`/`ch`
   for fluid layout and measure, `clamp()` for fluid scaling. Reserve `px` for things
   that are genuinely fixed — borders, hairlines, 1px offsets. Avoid raw `vw`/`vh` for
@@ -194,3 +257,9 @@ every "why won't this style apply" bug when it's skipped.
 ## Related
 
 - <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::platform@web/reference/responsive_layout.md" />
+
+## Sources
+
+- https://web.dev/baseline — Baseline definitions (Widely / Newly / Limited availability); accessed 2026-11-23
+- https://api.webstatus.dev/v1/features/ — web-features Baseline status per feature id (`cascade-layers`, `container-queries`, `has`, `oklab`, `color-mix`, `light-dark`, `text-wrap-balance`, `relative-color`, `starting-style`, `transition-behavior`, `popover`, `scope`, `contrast-color`, `anchor-positioning`, `customizable-select`, `interpolate-size`, `if`); queried 2026-11-23
+- https://drafts.csswg.org/css-color-5/ — CSS Color 5: `color-mix()`, relative color, `light-dark()`, `contrast-color()`; Editor's Draft; accessed 2026-11-23
