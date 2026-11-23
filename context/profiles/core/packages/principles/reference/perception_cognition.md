@@ -54,19 +54,19 @@ catastrophic" is a falsifiable claim with a fix.
 
 ---
 
-# The catalog
+## The catalog
 
 Each entry: **name + citation → definition → design obligation (imperative) →
 how to verify → grounds**.
 
-## Gestalt laws of grouping (Wertheimer 1923, and extensions)
+### Gestalt laws of grouping (Wertheimer 1923, and extensions)
 
 The Gestalt psychologists showed that the visual system organizes raw marks
 into wholes *pre-attentively* — before conscious reading — according to fixed
 grouping cues. The user perceives these groupings whether or not you intend
 them, so the only choice is to design with them.
 
-### Proximity
+#### Proximity
 
 - **Definition.** Elements close together are perceived as a single group;
   space between them signals separation.
@@ -79,7 +79,7 @@ them, so the only choice is to design with them.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" /> (grouping),
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/spacing_scale.md" /> (gaps create relatedness).
 
-### Similarity
+#### Similarity
 
 - **Definition.** Elements that share shape, color, size, or orientation are
   perceived as belonging to the same category.
@@ -89,7 +89,7 @@ them, so the only choice is to design with them.
   pair that shares styling but differs in function — that is a false grouping.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" />, <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" />.
 
-### Common region
+#### Common region
 
 - **Definition.** Elements inside a shared boundary (a card, panel, or filled
   background) are perceived as a group, even when proximity and similarity are
@@ -101,7 +101,7 @@ them, so the only choice is to design with them.
   a card spanning two unrelated concerns is a violation.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" /> (grouping).
 
-### Uniform connectedness
+#### Uniform connectedness
 
 - **Definition.** Elements joined by a continuous visual link (a connecting
   line, a shared background strip, a bracket) are grouped more strongly than by
@@ -113,7 +113,7 @@ them, so the only choice is to design with them.
   decorative lines that connect unrelated elements mislead and are a violation.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" />.
 
-### Good continuation
+#### Good continuation
 
 - **Definition.** Elements arranged along a line or smooth curve are perceived
   as related and as continuing in that direction; the eye follows the flow.
@@ -123,7 +123,7 @@ them, so the only choice is to design with them.
   proliferation of near-identical edges reads as broken continuation.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" /> (alignment, continuity).
 
-### Closure
+#### Closure
 
 - **Definition.** The visual system completes incomplete shapes, perceiving a
   whole from partial contours.
@@ -134,7 +134,7 @@ them, so the only choice is to design with them.
   if the closure fails, the group dissolves.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" />.
 
-### Common fate
+#### Common fate
 
 - **Definition.** Elements that move together — same direction, same timing —
   are perceived as a single group, even if otherwise dissimilar.
@@ -145,7 +145,7 @@ them, so the only choice is to design with them.
   be a real group; if unrelated items share a motion, that is a false grouping.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/motion.md" /> (elements moving together read as related).
 
-### Figure-ground
+#### Figure-ground
 
 - **Definition.** The visual system separates a scene into a *figure* (the
   attended object) and *ground* (the background) before anything is read; this
@@ -160,7 +160,7 @@ them, so the only choice is to design with them.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" /> (figure-ground, the
   focal point reads as figure).
 
-### Prägnanz (law of good figure / simplicity)
+#### Prägnanz (law of good figure / simplicity)
 
 - **Definition.** The visual system resolves ambiguous input into the simplest,
   most regular interpretation available — order is perceived as easier than
@@ -171,7 +171,7 @@ them, so the only choice is to design with them.
   structure; gratuitous irregularity that adds no meaning is a violation.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" />, <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" />.
 
-## Fitts's law (Fitts 1954)
+### Fitts's law (Fitts 1954)
 
 - **Definition.** The time to acquire a target is proportional to
   `log2(distance / width + 1)`: larger and closer targets are faster to hit;
@@ -189,7 +189,7 @@ them, so the only choice is to design with them.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" /> (the primary action is
   large and prominent), and component button/dialog rules.
 
-## Hick's law (Hick 1952; Hyman 1953)
+### Hick's law (Hick 1952; Hyman 1953)
 
 - **Definition.** Decision time increases with the number and complexity of
   simultaneous choices, roughly logarithmically. **Caveat (Liu et al. 2020):**
@@ -207,7 +207,7 @@ them, so the only choice is to design with them.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/information_density.md" />,
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" />.
 
-## Working-memory capacity (Cowan 2001; Miller 1956)
+### Working-memory capacity (Cowan 2001; Miller 1956)
 
 - **Definition.** Working memory holds only a few items at once. **Cowan's**
   estimate for *novel, unchunked* items is about **4**. **Miller's** classic
@@ -228,7 +228,7 @@ them, so the only choice is to design with them.
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" /> (grouping/chunking),
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" />.
 
-## Serial position effect (Ebbinghaus; Murdock 1962)
+### Serial position effect (Ebbinghaus; Murdock 1962)
 
 - **Definition.** In an ordered sequence, items at the **start (primacy)** and
   **end (recency)** are remembered and noticed better than items in the middle.
@@ -241,7 +241,7 @@ them, so the only choice is to design with them.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" />,
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/information_density.md" />.
 
-## von Restorff / isolation effect (von Restorff 1933)
+### von Restorff / isolation effect (von Restorff 1933)
 
 - **Definition.** An item that differs perceptually from its neighbors is
   attended first and remembered best — the distinct one stands out.
@@ -254,7 +254,7 @@ them, so the only choice is to design with them.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" /> (one focal point, the
   isolated element).
 
-## Aesthetic-usability effect (Kurosu & Kashimura 1995)
+### Aesthetic-usability effect (Kurosu & Kashimura 1995)
 
 - **Definition.** Users perceive attractive interfaces as easier to use, and are
   more tolerant of minor usability problems in them — perceived usability tracks
@@ -270,7 +270,7 @@ them, so the only choice is to design with them.
 - **Grounds.** the design profile as a whole; <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" />,
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" />.
 
-## Cognitive Load Theory (Sweller 1988)
+### Cognitive Load Theory (Sweller 1988)
 
 - **Definition.** Mental effort splits into three loads: **intrinsic** (inherent
   task difficulty), **extraneous** (effort wasted on poor presentation), and
@@ -288,7 +288,7 @@ them, so the only choice is to design with them.
 - **Grounds.** <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/information_density.md" />,
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/composition.md" />, <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/visual_hierarchy.md" />.
 
-## Processing fluency (Reber et al.; CHI 2023)
+### Processing fluency (Reber et al.; CHI 2023)
 
 - **Definition.** Visuals that are easy to process — clear, consistent,
   high-contrast, predictable — are judged more trustworthy, more usable, and
