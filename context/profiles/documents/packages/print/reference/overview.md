@@ -39,6 +39,12 @@ The five sections the medium charter makes mandatory, one principle file each:
   where this profile's guidance is validated and where it is extrapolated,
   including the sampling and extraction-mode limits of automated review.
 
+Supplementing the five:
+
+- <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::print@documents/reference/accessible_pdf.md" /> —
+  tagged PDF output: PDF/UA-1 vs PDF/UA-2, the structure a tagged document
+  carries, and producing it from LaTeX.
+
 ## What does NOT live here
 
 - **Abstract principles** — typographic theory, the spacing model, color

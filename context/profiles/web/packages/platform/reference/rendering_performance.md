@@ -9,6 +9,22 @@ decision with a *rendering* cost. This document frames performance as a design
 responsibility: a design that is slow or janky has failed, however good it looks in
 a static mock.
 
+## The budget: Core Web Vitals
+
+The user-perceived targets a design is accountable to are the three Core Web
+Vitals, each judged at the **75th percentile** of real page loads, mobile and
+desktop separately:
+
+| Metric | Measures | Good | Design levers |
+|---|---|---|---|
+| **LCP** — Largest Contentful Paint | Loading | ≤ 2.5 s | Hero image weight and priority, web-font strategy, no client-only hero |
+| **INP** — Interaction to Next Paint | Responsiveness | ≤ 200 ms | Main-thread work per interaction, DOM size, JS-driven effects |
+| **CLS** — Cumulative Layout Shift | Visual stability | ≤ 0.1 | Reserved boxes for media/ads/embeds, metric-matched font fallbacks |
+
+INP replaced First Input Delay as a Core Web Vital in 2024; a design reviewed
+against FID or "first interaction" alone is reviewed against a retired metric.
+The sections below are where each budget is won or lost.
+
 ## The rendering pipeline (and why it ranks costs)
 
 The browser turns CSS changes into pixels through a pipeline. Where in the pipeline
@@ -111,3 +127,7 @@ oversized DOM, animating layout) make the whole UI feel sticky:
 - The fastest interaction is the one with nothing blocking it. A design that stays
   off the main thread feels instant; that feeling is itself a design quality, on par
   with hierarchy and contrast.
+
+## Sources
+
+- https://web.dev/articles/vitals — Core Web Vitals: LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1 at p75; INP replaced FID in 2024 (page updated 2024-10-31); accessed 2026-11-23

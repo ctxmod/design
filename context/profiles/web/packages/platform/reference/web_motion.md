@@ -21,6 +21,12 @@ Pick the smallest tool that does the job:
 | **Scroll-driven animations** | Motion tied to scroll position (progress bars, reveal-on-scroll) | Prefer CSS `animation-timeline: scroll()/view()` over JS scroll listeners. |
 | **JS / Web Animations API** | Physics, gesture-following, orchestration the above can't express | Reach for it last; most UI motion is a CSS transition. |
 
+Entry and exit of elements that toggle `display` or enter the top layer
+(dialogs, popovers) no longer need JavaScript: `@starting-style` supplies the
+"before" state for an entry transition and `transition-behavior: allow-discrete`
+lets `display`/`overlay` participate in the transition (both Baseline newly
+available since 2024-08).
+
 Reserve JavaScript animation libraries for genuinely dynamic motion (spring physics,
 drag-follow, FLIP that the View Transitions API can't cover). A hover state or a
 dropdown opening is a CSS transition, not a library.
@@ -71,6 +77,12 @@ animates between the old and new snapshots and can morph shared elements:
   (preserving object identity across a change) without hand-rolled FLIP.
 - Tag the persistent element with `view-transition-name` so the browser animates it
   from its old box to its new one instead of cross-fading.
+- **Same-document** transitions (`document.startViewTransition()`, the SPA case)
+  are Baseline newly available since 2025-10 (Firefox 144 completed the set).
+  **Cross-document** transitions for multi-page navigations — opted into on both
+  pages with `@view-transition { navigation: auto; }` — ship in Chromium (126+)
+  and Safari (18.2+) but not Firefox, so they are limited availability as of
+  2026-11.
 - It degrades cleanly: where unsupported, the change simply happens without the
   transition. Author the experience so the transition is enhancement, never a
   prerequisite for the navigation working.
@@ -81,7 +93,9 @@ Scroll-linked reveals and progress indicators belong to the umbrella's *attentio
 and *status* purposes. On the web:
 
 - Prefer CSS `animation-timeline: view()` / `scroll()` to JavaScript scroll
-  handlers — it runs off the main thread and stays smooth.
+  handlers — it runs off the main thread and stays smooth. Scroll-driven
+  animations became Baseline newly available in 2026-10 (Firefox 159); keep the
+  un-animated state complete for older engines.
 - Scroll-jacking (overriding the natural scroll to drive a cinematic sequence)
   fights the user's primary navigation gesture and disproportionately harms
   motion-sensitive and assistive-tech users. Treat it as almost always wrong.
@@ -113,9 +127,19 @@ is not optional and not aspirational — it is the medium's hard contract:
 - Pair this with the umbrella's "don't encode meaning in motion alone" (see
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::platform@web/reference/web_accessibility.md" />): anything a user learns from an
   animation must also be readable when the animation is gone.
-- Respect `prefers-reduced-data` and slow connections the same way — heavy ambient
-  motion is a cost, not just a preference.
+- Treat slow connections and data cost the same way — heavy ambient motion is a
+  cost, not just a preference. Do not rely on `prefers-reduced-data` to switch it
+  off: the media query is specified but ships in no stable browser (2026-11), so
+  make the light path the default rather than an opt-in.
 
 The umbrella's test still governs: *remove the animation.* If the interface is now
 broken or confusing, the motion was load-bearing — keep it (and give it a reduced
 fallback). If it's merely less flashy, leave it removed.
+
+## Sources
+
+- https://api.webstatus.dev/v1/features/view-transitions — same-document view transitions, Baseline newly available 2025-10-14; queried 2026-11-23
+- https://api.webstatus.dev/v1/features/cross-document-view-transitions — cross-document view transitions, limited (Chromium 126, Safari 18.2); queried 2026-11-23
+- https://api.webstatus.dev/v1/features/scroll-driven-animations — Baseline newly available 2026-10-27 (Firefox 159); queried 2026-11-23
+- https://api.webstatus.dev/v1/features/starting-style — `@starting-style`, newly available 2024-08-06; `transition-behavior` likewise; queried 2026-11-23
+- https://api.webstatus.dev/v1/features/prefers-reduced-data — limited, no shipping implementation; queried 2026-11-23

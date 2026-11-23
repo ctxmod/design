@@ -110,10 +110,11 @@ without edits, exactly as it works across brand swaps.
 | **Semantic** (Layer 2)   | *re-resolves* — color roles swap primitive | *re-resolves* — spacing/size roles swap primitive | *re-resolves* — type roles swap primitive |
 | **Component** (Layer 3)  | unchanged | unchanged | unchanged |
 
-> **DTCG status.** As noted under "Canonical format" above, theming/modes are *not yet*
-> native to the W3C DTCG spec (GitHub Issue #210). Modes therefore live at the **system
-> layer** — a set of alternate semantic→primitive mappings over the same role names — not
-> inside the interchange format.
+> **DTCG status.** As noted under "Canonical format" below, the DTCG 2025.10 release
+> standardizes modes in its **Resolver Module**: each mode axis is a *modifier* whose
+> *contexts* (`light`/`dark`, `compact`/`spacious`, a locale) supply alternate token
+> sources over the same role names. That is exactly this model — modes re-resolve the
+> semantic→primitive mapping; they are never a fourth layer.
 
 The three concrete modes are each documented as *modes* in their principle files:
 <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/color.md" />,
@@ -157,14 +158,32 @@ JSON and translate them to every platform's delivery format. Its core:
 - **`{group.token}` references** express aliases — a semantic token references a primitive
   by path (`"$value": "{color.brand.600}"`), which is exactly the Layer 2 → Layer 1
   mapping above.
-- **Typed values** — DTCG defines composite and primitive types including `dimension`,
-  `duration`, `cubicBezier`, and `fontFamily` (per §8.5 / §8.6), so a value carries its
-  own semantics rather than being an untyped string.
+- **Typed values** — the Format Module defines primitive types (`color` §8.1,
+  `dimension` §8.2, `fontFamily` §8.3, `fontWeight` §8.4, `duration` §8.5,
+  `cubicBezier` §8.6, `number` §8.7) and composite types (§9: border, transition,
+  shadow, gradient, typography, …), so a value carries its own semantics rather than
+  being an untyped string. Values are structured: a `dimension` is
+  `{ "value": 16, "unit": "rem" }` (`px` or `rem`), and a `color` is an object per the
+  **Color Module** — `colorSpace` (any CSS Color 4 space, including `oklch` and
+  `display-p3`) plus `components`, with optional `alpha` and a 6-digit `hex` fallback.
+  A bare `"#1d4ed8"` string is not a valid 2025.10 color value.
+- **Files** use the `.tokens` / `.tokens.json` extension and the
+  `application/design-tokens+json` media type; `$deprecated` and group `$extends`
+  are part of the format.
 
 ```json
 {
   "color": {
-    "brand": { "600": { "$type": "color", "$value": "#1d4ed8" } },
+    "brand": {
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.1137, 0.3059, 0.8471],
+          "hex": "#1d4ed8"
+        }
+      }
+    },
     "text": {
       "danger": {
         "$type": "color",
@@ -176,10 +195,18 @@ JSON and translate them to every platform's delivery format. Its core:
 }
 ```
 
-> **Modes are not native to DTCG.** Theming/modes (theme, density, locale) are *not yet*
-> part of the spec — this is unresolved (DTCG GitHub Issue #210). So modes are handled at
-> the **system layer**, not inside the token format: a mode is a different set of
-> semantic→primitive mappings over the *same* role names. See the Modes subsection of the
+> **Modes in DTCG: the Resolver Module.** The 2025.10 release ships a separate
+> **Resolver Module** (a `.resolver.json` document) for tokens in multiple contexts. It
+> declares `sets` (token sources), `modifiers` (a mode axis such as `theme`, with a
+> `contexts` map like `light`/`dark`, each listing its own sources, and an optional
+> `default`), and a required `resolutionOrder` in which later entries override earlier
+> ones; a tool resolves one concrete token set from an input such as
+> `{ "theme": "dark", "density": "compact" }`. A mode is still a different set of
+> semantic→primitive mappings over the *same* role names — author each axis as one
+> modifier, keep the semantic role names identical in every context, and let the
+> resolver (not the components) pick the primitive. Before the Resolver Module existed,
+> modes lived only at the system layer; tools that predate it may still need that
+> approach. See the Modes subsection of the
 > medium charter (<ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::process@core/reference/medium_charter.md" />), and the mode-axis treatments in
 > <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/information_density.md" /> and
 > <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/internationalization.md" />.
@@ -338,3 +365,10 @@ constant in code that should reference a shared definition.
 ## Related
 
 - <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::foundations@core/reference/glossary.md" />
+
+## Sources
+
+- https://www.w3.org/community/design-tokens/2025/10/28/design-tokens-specification-reaches-first-stable-version/ — DTCG first stable release 2025.10 (Format, Color, Resolver modules), 2025-10-28; accessed 2026-11-23
+- https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/ — Format Module 2025.10: type sections §8.1–8.7 and §9, dimension object, `.tokens.json`, `application/design-tokens+json`, `$extends`, `$deprecated`; accessed 2026-11-23
+- https://www.w3.org/community/reports/design-tokens/CG-FINAL-color-20251028/ — Color Module 2025.10: color `$value` object (`colorSpace`, `components`, `alpha`, `hex` fallback); accessed 2026-11-23
+- https://www.w3.org/community/reports/design-tokens/CG-FINAL-resolver-20251028/ — Resolver Module 2025.10: sets, modifiers/contexts, `resolutionOrder`, inputs, `.resolver.json`; accessed 2026-11-23
