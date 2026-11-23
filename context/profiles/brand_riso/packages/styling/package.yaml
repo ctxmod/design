@@ -3,3 +3,11 @@ description: >-
   palette, type, motion and signature element, and per-component
   styling for buttons, cards, feedback, inputs and navigation.
 binds_to_depth: main...
+binds_to_paths:
+  - "*.css"
+  - "*.scss"
+  - "*.tsx"
+  - "*.jsx"
+  - "*.vue"
+  - "*.svelte"
+  - "*.html"
