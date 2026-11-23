@@ -3,3 +3,11 @@ description: >-
   accessibility, rendering performance, CSS/SVG/Canvas platform
   primitives, and the CSS conventions and responsive discipline rules.
 binds_to_depth: main...
+binds_to_paths:
+  - "*.css"
+  - "*.scss"
+  - "*.tsx"
+  - "*.jsx"
+  - "*.vue"
+  - "*.svelte"
+  - "*.html"
