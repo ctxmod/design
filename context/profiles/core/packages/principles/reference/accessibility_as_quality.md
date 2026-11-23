@@ -41,8 +41,9 @@ human contrast-sensitivity function (see
 Cite the success criteria, not just the ratios:
 
 - **SC 1.4.3 Contrast (Minimum)** — Level AA, the normative floor: body text
-  **4.5 : 1** against its actual background; large text (≥ 18px, or ≥ 14px bold)
-  **3 : 1**.
+  **4.5 : 1** against its actual background; large text (≥ 18 pt ≈ 24 CSS px, or
+  ≥ 14 pt ≈ 18.66 CSS px bold — WCAG's "large scale" is defined in points, not
+  pixels) **3 : 1**.
 - **SC 1.4.11 Non-text Contrast** — Level AA: UI components and graphical objects
   (icons, borders, focus rings, chart strokes, input outlines) **3 : 1**.
 - **SC 1.4.6 Contrast (Enhanced)** — Level AAA *(labeled stretch goal, not the
@@ -99,6 +100,26 @@ Operation must not depend on a single complex pointer interaction:
   alternative that is not a drag (e.g. tap-target buttons, a numeric input).
   Design the non-drag path as a first-class affordance, not a fallback.
 
+## Help, re-entry, and authentication (new in WCAG 2.2)
+
+Three of WCAG 2.2's nine new criteria are about *flows*, not pixels, and are
+easy to miss because no contrast or focus check surfaces them:
+
+- **SC 3.2.6 Consistent Help** — Level A: where help mechanisms (contact
+  details, a help link, a chat) repeat across pages, they appear in the same
+  relative order.
+- **SC 3.3.7 Redundant Entry** — Level A: information the user already gave in
+  the same process is auto-populated or selectable, not re-typed (except for
+  security or when the earlier value is no longer valid).
+- **SC 3.3.8 Accessible Authentication (Minimum)** — Level AA: no step of
+  sign-in relies on a cognitive function test (remembering a password,
+  transcribing a code, solving a puzzle) unless an alternative, a mechanism to
+  assist (paste and password-manager autofill allowed), object or personal
+  content recognition is available. Never block paste into credential fields.
+
+WCAG 2.2 also made **SC 4.1.1 Parsing** obsolete — it is no longer a failure
+condition, though work held to WCAG 2.0/2.1 may still need to report it.
+
 ## Readability
 
 Readability is an accessibility property:
@@ -151,6 +172,26 @@ presented as the baseline (do not, for example, treat the 44px AAA target as a
 requirement). Cite the [WCAG 2.2 specification](https://www.w3.org/TR/WCAG22/)
 for the authoritative criterion text.
 
+### Standards currency (checked 2026-11-23)
+
+- **WCAG 2.2** is the current W3C Recommendation (first published 2023-10-05;
+  current edition 2024-12-12) and is also **ISO/IEC 40500:2025** (W3C
+  announcement 2025-10-21), which lets national rules cite it directly.
+- **WCAG 3.0** is a Working Draft (latest 2026-09-10). It is not a standard,
+  W3C states WCAG 3 does not replace or deprecate WCAG 2, and its content will
+  change — never present a WCAG 3 draft method (scoring, a new contrast
+  algorithm such as APCA) as a conformance requirement.
+- **EN 301 549**, the European harmonised standard legal regimes point at, was
+  published as **V4.1.1 on 2026-09-02**, adopting WCAG 2.2 Level AA for web,
+  non-web documents and software, plus requirements WCAG does not have. It
+  confers presumption of conformity only once the European Commission cites it
+  in the Official Journal; until then **V3.2.1 (WCAG 2.1 AA)** stays the cited
+  reference. Treat any legal-conformance claim as tied to the cited edition,
+  and the jurisdiction-specific detail as a medium/locale profile's concern.
+
+The design floor (WCAG 2.2 AA) is therefore ahead of, and compatible with, the
+legal floor (WCAG 2.1 AA via EN 301 549 V3.2.1) until V4.1.1 is cited.
+
 - Responsive down to small screens.
 - Visible keyboard focus on every interactive element.
 - Reduced motion respected.
@@ -169,9 +210,18 @@ accordingly:
 - **Divergent** (need manual review — a tool cannot judge them): correctness of
   ARIA patterns and announced state, pointer-gesture and dragging alternatives
   (SC 2.5.1 / 2.5.7), focus-not-obscured behavior under sticky chrome
-  (SC 2.4.11 / 2.4.12), and whether meaning genuinely survives the loss of a
-  single channel. Budget for keyboard-only and screen-reader walkthroughs.
+  (SC 2.4.11 / 2.4.12), help placement and multi-step flows (SC 3.2.6 /
+  3.3.7 / 3.3.8 — walk the real sign-in and form journeys), and whether meaning
+  genuinely survives the loss of a single channel. Budget for keyboard-only and screen-reader walkthroughs.
 
 Hit this floor without announcing it. It is included in the
 <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::process@core/reference/design_review.md" /> precisely because
 a beautiful design that fails it is not finished.
+
+## Sources
+
+- https://www.w3.org/TR/WCAG22/ — WCAG 2.2 Recommendation (edition 2024-12-12): "large scale" definition (18 pt / 14 pt bold), SC 3.2.6, 3.3.7, 3.3.8, 4.1.1 obsolete; accessed 2026-11-23
+- https://www.w3.org/WAI/news/2025-10-21/wcag22-iso — WCAG 2.2 approved as ISO/IEC 40500:2025, 2025-10-21; accessed 2026-11-23
+- https://www.w3.org/standards/history/wcag-3.0/ — WCAG 3.0 publication history, latest Working Draft 2026-09-10; accessed 2026-11-23
+- https://nda.ie/news/en301549-published — EN 301 549 V4.1.1 published 2026-09-02, references WCAG 2.2 AA, binding only after OJEU citation, V3.2.1 in force until then; accessed 2026-11-23
+- https://www.deque.com/blog/en-301-549-v4-1-1-is-final-what-changed-what-it-means-and-what-you-should-do/ — V4.1.1 changes and citation-date uncertainty (2026-09-08, updated); accessed 2026-11-23

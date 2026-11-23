@@ -45,6 +45,19 @@ own. But broken ARIA is worse than none — it lies to assistive tech.
 - Never use ARIA to *remove* semantics that the design needs (`aria-hidden` on
   focusable content traps keyboard users).
 
+## Which WCAG
+
+Author to **WCAG 2.2 Level AA** — the conformance position and the standards
+currency (WCAG 2.2 / ISO/IEC 40500:2025, the WCAG 3 draft, the EN 301 549
+editions) live in
+<ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/accessibility_as_quality.md" />.
+WCAG 2.2's flow criteria — consistent help, redundant entry, accessible
+authentication — land on the web as: keep help links in the same place in the
+shell, pre-fill or offer earlier answers in multi-step forms (`autocomplete`
+tokens help), and never block paste or password-manager autofill on credential
+fields (`autocomplete="current-password"` / `one-time-code`); a passkey
+(WebAuthn) sign-in involves no cognitive function test at all.
+
 ## Contrast (WCAG)
 
 Apply the umbrella's contrast targets with the web's exact thresholds, verified
@@ -109,7 +122,9 @@ The browser exposes the user's environment; honor it:
   /`system colors` where you must intervene.
 - **`prefers-reduced-motion`** — covered in <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::platform@web/reference/web_motion.md" />; meaning
   must never live in motion alone.
-- **`prefers-reduced-data`** — treat heavy media as a cost.
+- **Data cost** — treat heavy media as a cost by default. The
+  `prefers-reduced-data` media query is specified but ships in no stable browser
+  (2026-11), so it cannot be the switch that makes a page light.
 
 ## The web quality floor
 
@@ -123,3 +138,8 @@ beautiful page that misses this floor is not finished.
 ## Related
 
 - <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::platform@web/rules/responsive_discipline.md" />
+
+## Sources
+
+- https://www.w3.org/TR/WCAG22/ — WCAG 2.2 (edition 2024-12-12): large-scale text definition, SC 3.2.6 / 3.3.7 / 3.3.8; accessed 2026-11-23
+- https://api.webstatus.dev/v1/features/prefers-reduced-data — limited availability, no shipping implementation; queried 2026-11-23

@@ -107,8 +107,8 @@ unreadable for a large fraction of users. Target the WCAG ratios:
 
 | Content | Minimum (AA) | Enhanced (AAA) |
 |---------|--------------|----------------|
-| Body text (< 18px / < 14px bold) | 4.5 : 1 | 7 : 1 |
-| Large text (≥ 18px / ≥ 14px bold) | 3 : 1 | 4.5 : 1 |
+| Body text (< 18 pt ≈ 24px / < 14 pt ≈ 18.66px bold) | 4.5 : 1 | 7 : 1 |
+| Large text (≥ 18 pt ≈ 24px / ≥ 14 pt ≈ 18.66px bold) | 3 : 1 | 4.5 : 1 |
 | UI components & graphical objects (borders, icons, focus rings) | 3 : 1 | — |
 
 Notes:
@@ -124,6 +124,15 @@ Notes:
   <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/accessibility_as_quality.md" />).
 - Accent colors often need a lightness nudge between light and dark themes to keep
   the 4.5:1 ratio against their changed background.
+- **The WCAG 2 ratio is still the conformance test.** APCA and other perceptual
+  contrast models are research inputs to the WCAG 3 drafts, not a requirement of
+  any Recommendation; use them, if at all, as an extra design signal alongside
+  the 2.x ratios, never instead of them.
+- **Platform auto-contrast is a fallback, not a guarantee.** CSS
+  `contrast-color()` (Baseline newly available 2026-04) picks white or black for
+  text on a solid background with a UA-defined algorithm, and the spec only asks
+  the result to meet the AA *large-text* bar (3 : 1). Body text chosen this way
+  still owes a 4.5 : 1 check against the real background.
 
 ## Color in context
 
@@ -142,3 +151,9 @@ Perceived color is relative — a swatch shifts depending on what surrounds it
 - <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::components@core/reference/inputs.md" />
 - <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/perception_cognition.md" />
 - <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::foundations@core/reference/glossary.md" />
+
+## Sources
+
+- https://www.w3.org/TR/WCAG22/ — WCAG 2.2 "large scale" definition (18 pt, or 14 pt bold) and SC 1.4.3 / 1.4.6 / 1.4.11 ratios, edition 2024-12-12; accessed 2026-11-23
+- https://drafts.csswg.org/css-color-5/#contrast-color — CSS Color 5 `contrast-color()`: white/black only, UA-defined algorithm, result should meet AA large text; Editor's Draft; accessed 2026-11-23
+- https://api.webstatus.dev/v1/features/contrast-color — web-features Baseline status: newly available 2026-04-10 (Chrome 147, Firefox 146, Safari 26); accessed 2026-11-23

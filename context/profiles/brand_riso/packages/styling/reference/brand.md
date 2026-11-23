@@ -74,9 +74,10 @@ Notes on the constraint and contrast:
   decoratively.
 - **Contrast (verify in situ).** `--ink-blue #2C40A7` on `--paper #FFF8EC` is
   ~8.6:1 — comfortable for headings and body. `--ink-pink #F237A1` on `--paper`
-  is ~3.4:1 — it clears the 3:1 bar for UI components, large text (≥18px / ≥14px
-  bold), and focus rings, but **not** the 4.5:1 body-text bar. So pink fills
-  buttons and large/active labels; pink text on paper must be large or bold, and
+  is ~3.4:1 — it clears the 3:1 bar for UI components, large text (≥24px, or
+  ≥18.66px bold — WCAG's 18 pt / 14 pt bold), and focus rings, but **not** the
+  4.5:1 body-text bar. So pink fills buttons and large/active labels; pink text
+  on paper must be large-scale by that definition, and
   small pink-on-paper text is disallowed. `--text` on `--paper` is AAA. Always
   verify against the *actual* background per <ctxmod_link path="ctx:github.com/ctxmod/design/context::shared::principles@core/reference/color.md" />.
 
