@@ -1,5 +1,6 @@
 description: >-
   The five medium-charter sections for paginated print: capability
   declaration, slot mapping, token translation, affordance
-  adaptation, and the confidence note.
+  adaptation, and the confidence note, plus accessible (tagged,
+  PDF/UA) PDF output.
 binds_to_depth: main...
